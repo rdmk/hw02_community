@@ -10,5 +10,5 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = group.posts.all()[:12]
-    return render(request, 'group.html', {'group': group, 'posts': posts})
+    posts = group.posts.all()[:11]
+    return render(request, 'group_list.html', {'group': group, 'posts': posts})
