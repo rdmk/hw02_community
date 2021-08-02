@@ -5,10 +5,18 @@ from .models import Post, Group
 
 def index(request):
     latest = Post.objects.all()[:11]
-    return render(request, 'posts/index.html', {'posts': latest})
+    return render(
+        request,
+        'posts/index.html',
+        {'posts': latest}
+    )
 
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     posts = group.posts.all()[:11]
-    return render(request, 'posts/group_list.html', {'group': group, 'posts': posts})
+    return render(
+        request,
+        'posts/group_list.html',
+        {'group': group, 'posts': posts}
+    )
