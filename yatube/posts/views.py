@@ -39,9 +39,9 @@ def group_posts(request, slug):
 
 def profile(request, username):
     user = User.objects.get(username=username)
-    posts = Post.objects.filter(author=username)
+    posts = Post.objects.filter(author=user)
     paginator = Paginator(posts, 10)
-    page_number = request.Get.get('page')
+    page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     count = Post.objects.filter(author=user).count()
     context = {
