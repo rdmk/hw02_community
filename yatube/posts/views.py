@@ -1,12 +1,6 @@
-from django.contrib.auth import get_user_model
-from django.core import paginator
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
-
 from .models import Post, Group, User
-
-
-User = get_user_model()
 
 
 def index(request):
@@ -50,3 +44,13 @@ def profile(request, username):
         'count': count,
     }
     return render(request, 'posts/profile.html', context)
+
+
+def post_detail(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    count = Post.objects.filter(author=post.author).count()
+    context = {
+        'post': post,
+        'count': count,
+    }
+    return render(request, 'posts/post_detail.html', context)
